@@ -1,5 +1,16 @@
-const prompt = require("prompt-sync")
+const fs = require("fs")
 
-let nombre = prompt("Ingresa un nombre")
+console.log(process.argv)
 
-console.log(`hola ${nombre}`)
+/*data del koder 
+name
+*/
+let koders = fs.readFileSync("./koders.json", "utf8")
+koders = JSON.parse(koders)
+if (process.argv[2] === "add") {
+    if (process.argv[3] !== "") {
+        koders.push({ name: process.argv[3] })
+        fs.writeFileSync("./koders.json", JSON.stringify(koders), "utf8")
+    }
+}
+
